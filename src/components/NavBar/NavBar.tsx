@@ -16,7 +16,7 @@ const NavBar = () => {
             Quotes collection
           </Typography>
           <Box display="flex" alignItems="center">
-            <Button color="inherit" component={NavLink} to="/quotes">
+            <Button color="inherit" component={NavLink} to="/">
               All quotes
             </Button>
             <Box mx={1} borderLeft={2} borderColor="inherit" height="24px" />
