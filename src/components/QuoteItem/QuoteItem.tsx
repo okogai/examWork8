@@ -14,8 +14,7 @@ interface QuoteItemProps {
 const QuoteItem: React.FC<QuoteItemProps> = ({ quote, onDelete }) => (
   <Card variant="outlined" sx={{ width: "70%", mb: 2, paddingLeft: 2 , paddingRight: 2}}>
     <CardContent>
-      <Typography variant="h6" sx={{ fontSize: '1rem' }}><strong>Created on: </strong> {dayjs(quote.date).format("DD.MM.YYYY HH:mm")}</Typography>
-      <Typography variant="h5" sx={{ fontSize: '1rem' }}><strong>Category: </strong>{quote.category}</Typography>
+      <Typography variant="h6" sx={{ fontSize: '1rem', mb: 1 }}><strong>Created on: </strong> {dayjs(quote.date).format("DD.MM.YYYY HH:mm")}</Typography>
       <Typography variant="h5" sx={{ fontSize: '1.5rem', mb: 2 }}><strong>Author: </strong>{quote.author}</Typography>
       <Typography variant="body2">{quote.text}</Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>

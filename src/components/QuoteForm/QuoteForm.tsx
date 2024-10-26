@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IQuote } from '../../types';
 import axiosAPI from '../../axiosAPI.ts';
 import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
@@ -15,6 +15,7 @@ const initialForm = {
 const QuoteForm = () => {
   const { id } = useParams<{ id: string }>();
   const [quote, setQuote] = useState<IQuote>(initialForm);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuote({ ...quote, [e.target.name]: e.target.value });
@@ -29,6 +30,7 @@ const QuoteForm = () => {
         } catch (error) {
           console.error(error);
         } finally {
+          navigate(`/category/${quote.category}`);
         }
       } else {
         try {
@@ -66,8 +68,6 @@ const QuoteForm = () => {
 
     void getQuoteByID();
   }, [id]);
-
-  console.log(id);
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2, maxWidth: 600, mx: 'auto' }}>

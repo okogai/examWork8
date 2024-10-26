@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { IQuoteFromDB } from '../../types';
 import axiosAPI from '../../axiosAPI.ts';
 import QuoteItem from '../QuoteItem/QuoteItem.tsx';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { categories } from '../QuoteForm/categories.ts';
 
 const QuotesList = () => {
   const [quotes, setQuotes] = useState<IQuoteFromDB[]>([]);
@@ -17,6 +18,10 @@ const QuotesList = () => {
       console.error(error);
     }
   };
+
+  const categoryTitle = categoryId
+    ? categories.find(category => category.id === categoryId)?.title
+    : 'All quotes';
 
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -60,15 +65,20 @@ const QuotesList = () => {
     void fetchQuotes();
   }, [categoryId]);
 
-  console.log(categoryId);
-
   return (
     <>
       <Container>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          {quotes.map((quote) => (
-            <QuoteItem key={quote.id} quote={quote} onDelete={onDelete} />
-          ))}
+        <Typography sx={{textAlign: "center", mb: 4}} variant="h3">{categoryTitle}</Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {quotes.length > 0 ? (
+            quotes.map((quote) => (
+              <QuoteItem key={quote.id} quote={quote} onDelete={onDelete} />
+            ))
+          ) : (
+            <Typography variant="h6" color="text.secondary" sx={{ mt: 2 }}>
+              There are no quotes added to this category yet
+            </Typography>
+          )}
         </Box>
       </Container>
     </>
