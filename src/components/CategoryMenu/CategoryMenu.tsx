@@ -1,6 +1,6 @@
-import { Box, Button } from '@mui/material';
-import { categories } from '../QuoteForm/categories.ts';
-import { useNavigate } from 'react-router-dom';
+import { Box, Button } from "@mui/material";
+import { categories } from "../QuoteForm/categories.ts";
+import { useNavigate } from "react-router-dom";
 
 const CategoryMenu = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const CategoryMenu = () => {
       {categories.map((category) => (
         <Button
           key={category.id}
-          variant='contained'
+          variant="contained"
           fullWidth
           sx={{ mb: 1 }}
           onClick={() => handleCategoryClick(category.id)}

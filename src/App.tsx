@@ -1,13 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
-import HomePage from './containers/HomePage/HomePage.tsx';
-import NavBar from './components/NavBar/NavBar.tsx';
-import QuoteForm from './components/QuoteForm/QuoteForm.tsx';
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./containers/HomePage/HomePage.tsx";
+import NavBar from "./components/NavBar/NavBar.tsx";
+import QuoteForm from "./components/QuoteForm/QuoteForm.tsx";
 
 const App = () => {
   return (
     <>
       <header>
-        <NavBar/>
+        <NavBar />
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -15,7 +15,10 @@ const App = () => {
         <Route path="/category/:categoryId" element={<HomePage />} />
         <Route path="/quotes/:id/edit" element={<QuoteForm />} />
         <Route path="/add-quote" element={<QuoteForm />} />
-        <Route path="*" element={<h1 className="text-center">Page Not Found</h1>} />
+        <Route
+          path="*"
+          element={<h1 className="text-center">Page Not Found</h1>}
+        />
       </Routes>
     </>
   );
