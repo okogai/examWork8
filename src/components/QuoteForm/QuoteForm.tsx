@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IQuote } from '../../types';
 import axiosAPI from '../../axiosAPI.ts';
-import { Box, Button, MenuItem, TextField } from '@mui/material';
+import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
 import { categories } from './categories.ts';
 
 const initialForm = {
@@ -13,7 +13,7 @@ const initialForm = {
 };
 
 const QuoteForm = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [quote, setQuote] = useState<IQuote>(initialForm);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +52,7 @@ const QuoteForm = () => {
     const getQuoteByID = async  () => {
       if (id) {
         try {
-          const response = await axiosAPI.get(`/quotes/${id}`);
+          const response = await axiosAPI.get(`/quotes/${id}.json`);
           if (response.data) {
             setQuote({...response.data });
           }
@@ -67,8 +67,13 @@ const QuoteForm = () => {
     void getQuoteByID();
   }, [id]);
 
+  console.log(id);
+
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2, maxWidth: 600, mx: 'auto' }}>
+      <Typography variant="h5" gutterBottom>
+        {id ? "Edit quote" : "Add quote"}
+      </Typography>
       <TextField
         label="Author"
         variant="outlined"

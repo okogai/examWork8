@@ -9,9 +9,11 @@ const App = () => {
       <header>
         <NavBar/>
       </header>
-      <QuoteForm/>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/quotes" element={<HomePage />} />
+        <Route path="/quotes/:id/edit" element={<QuoteForm />} />
+        <Route path="/add-quote" element={<QuoteForm />} />
         <Route path="*" element={<h1 className="text-center">Page Not Found</h1>} />
       </Routes>
     </>
